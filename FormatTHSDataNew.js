@@ -438,54 +438,55 @@ function validateFirstRowStructure(sheet) {
             "",                   // 9（合并）
             "",                   // 10（合并）
             "",                   // 11（合并）
-            "市净率",             // 12（包含日期）
-            "营业收入(元)",       // 13
-            "",                   // 14（合并）
+            "",                   // 12（合并）
+            "市净率",             // 13（包含日期）
+            "营业收入(元)",       // 14
             "",                   // 15（合并）
             "",                   // 16（合并）
             "",                   // 17（合并）
-            "净利润(元)",         // 18
-            "",                   // 19（合并）
+            "",                   // 18（合并）
+            "净利润(元)",         // 19
             "",                   // 20（合并）
             "",                   // 21（合并）
             "",                   // 22（合并）
-            "营业收入(同比增长率)(%)",// 23
-            "",                   // 24（合并）
+            "",                   // 23（合并）
+            "营业收入(同比增长率)(%)",// 24
             "",                   // 25（合并）
             "",                   // 26（合并）
             "",                   // 27（合并）
             "",                   // 28（合并）
             "",                   // 29（合并）
-            "净利润同比增长率(%)",  // 30
-            "",                   // 31（合并）
+            "",                   // 30（合并）
+            "净利润同比增长率(%)",  // 31
             "",                   // 32（合并）
             "",                   // 33（合并）
             "",                   // 34（合并）
             "",                   // 35（合并）
             "",                   // 36（合并）
-            "收盘价:不复权(元)",   // 37
-            "",                   // 38（合并）
-            "[1] / [2]",          // 39
-            "区间最低价:前复权(元) [3]",// 40（包含日期范围）
-            "区间最低价:前复权日",   // 41（包含日期范围）
-            "[1] / [3]",          // 42
-            "区间最高价:前复权(元) [4]",// 43（包含日期范围）
-            "区间最高价:前复权日",   // 44（包含日期范围）
-            "[1] / [4]",          // 45
-            "5日均线 [5]",        // 46（包含日期）
-            "20日均线 [6]",       // 47（包含日期）
-            "60日均线 [7]",       // 48（包含日期）
-            "10日均线 [8]",       // 49（包含日期）
-            "[1] / [5]",          // 50
-            "[1] / [6]",          // 51
-            "[1] / [7]",          // 52
-            "[5] / [8]",          // 53
-            "区间主力资金流向(元)",  // 54
-            "",                   // 55（合并）
+            "",                   // 37（合并）
+            "收盘价:不复权(元)",   // 38
+            "",                   // 39（合并）
+            "[1] / [2]",          // 40
+            "区间最低价:前复权(元) [3]",// 41（包含日期范围）
+            "区间最低价:前复权日",   // 42（包含日期范围）
+            "[1] / [3]",          // 43
+            "区间最高价:前复权(元) [4]",// 44（包含日期范围）
+            "区间最高价:前复权日",   // 45（包含日期范围）
+            "[1] / [4]",          // 46
+            "5日均线 [5]",        // 47（包含日期）
+            "20日均线 [6]",       // 48（包含日期）
+            "60日均线 [7]",       // 49（包含日期）
+            "10日均线 [8]",       // 50（包含日期）
+            "[1] / [5]",          // 51
+            "[1] / [6]",          // 52
+            "[1] / [7]",          // 53
+            "[5] / [8]",          // 54
+            "区间主力资金流向(元)",  // 55
             "",                   // 56（合并）
-            "预告净利润中值(元)",   // 57（包含日期）
-            "业绩预告类型",       // 58（包含日期）
-            "所属概念"            // 59
+            "",                   // 57（合并）
+            "预告净利润中值(元)",   // 58（包含日期）
+            "业绩预告类型",       // 59（包含日期）
+            "所属概念"            // 60
         ];
 
         // 存储错误信息
@@ -745,14 +746,14 @@ function FormatStockSelectionTable() {
 
         // 4. 解析列范围并缓存
         const columnRanges = {
-            revenue: parseColumnRange("M-Q"), // 营业收入
-            profit: parseColumnRange("R-V"),// 营业利润
-            growth: parseColumnRange("W-AC,AD-AJ"),// 营收增长比例
+            revenue: parseColumnRange("N-R"), // 营业收入
+            profit: parseColumnRange("S-W"),// 营业利润
+            growth: parseColumnRange("X-AD,AE-AK"),// 营收增长比例
             marketValue: parseColumnRange("F"),// 市值
-            mainFund: parseColumnRange("BB-BD"),// 主力资金
-            forecastProfit: parseColumnRange("BE"),// 预告利润
+            mainFund: parseColumnRange("BC-BE"),// 主力资金
+            forecastProfit: parseColumnRange("BF"),// 预告利润
             dailyChange: parseColumnRange("C"),// 当日涨跌幅
-            rangeChange: parseColumnRange("C,G-K"),// 区间涨跌幅
+            rangeChange: parseColumnRange("C,G-L"),// 区间涨跌幅
             defaultFormat: parseColumnRange("C,E-BF")// 默认格式列
         };
 
@@ -971,11 +972,10 @@ function createConceptTableWithFormulas() {
                 ["H3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}I:I)/B3`],
                 ["I3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}J:J)/B3`],
                 ["J3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}K:K)/B3`],
-                //["K3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}L:L)/B3`],
-                ["K3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BB:BB)/B3`],//主力资金
+                ["K3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}L:L)/B3`],
                 ["L3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BC:BC)/B3`],
                 ["M3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BD:BD)/B3`],
-                ["N3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}M:M)/B3`],//营业收入
+                ["N3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BE:BE)/B3`],
                 ["O3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}N:N)/B3`],
                 ["P3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}O:O)/B3`],
                 ["Q3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}P:P)/B3`],
@@ -992,13 +992,14 @@ function createConceptTableWithFormulas() {
                 ["AB3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AA:AA)/B3`],
                 ["AC3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AB:AB)/B3`],
                 ["AD3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AC:AC)/B3`],
-                ["AE3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AD:AD)/B3`],//净利润同比
-                ["AF3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AE:AE)/B3`],
-                ["AG3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AF:AF)/B3`],
-                ["AH3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AG:AG)/B3`],
-                ["AI3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AH:AH)/B3`],
-                ["AJ3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AI:AI)/B3`],
-                ["AK3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AJ:AJ)/B3`]
+                ["AE3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AD:AD)/B3`],
+                ["AF3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AF:AF)/B3`],
+                ["AG3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AG:AG)/B3`],
+                ["AH3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AH:AH)/B3`],
+                ["AI3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AI:AI)/B3`],
+                ["AJ3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AJ:AJ)/B3`],
+                ["AK3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AK:AK)/B3`],
+                ["AL3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AL:AL)/B3`]
             ];
 
             // 批量设置公式（减少与Excel交互次数）
@@ -1022,15 +1023,16 @@ function createConceptTableWithFormulas() {
                 DARK_RED_FILL: RGB_BGR(235, 0, 0),
                 WHITE_TEXT: RGB_BGR(255, 255, 255),
             };
+
             // 解析列范围（一次性解析所有范围）
-            const revenueCols = parseColumnRange("N-R");
-            const profitCols = parseColumnRange("S-W");
-            const growthCols = parseColumnRange("X-AD,AE-AK");
+            const revenueCols = parseColumnRange("O-S");
+            const profitCols = parseColumnRange("T-X");
+            const growthCols = parseColumnRange("Y-AE,AF-AL");
             const marketValueCol = parseColumnRange("C-D");
-            const mainFundCols = parseColumnRange("K-M");
+            const mainFundCols = parseColumnRange("L-N");
             const dailyChangeCol = parseColumnRange("E");
-            const rangeChangeCols = parseColumnRange("F-J");
-            const defaultFormatCols = parseColumnRange("E-AK");
+            const rangeChangeCols = parseColumnRange("F-K");
+            const defaultFormatCols = parseColumnRange("E-AL");
 
             // 优化格式设置：减少循环次数和属性访问
             const numberFormats = new Map([
@@ -1195,34 +1197,34 @@ function createMarketIndustrialTable() {
                 { cell: "H3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!I$${dataStartRow}:I$${dataEndRow})/B3)` },
                 { cell: "I3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!J$${dataStartRow}:J$${dataEndRow})/B3)` },
                 { cell: "J3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!K$${dataStartRow}:K$${dataEndRow})/B3)` },
-                //{ cell: "K3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!L$${dataStartRow}:L$${dataEndRow})/B3)` },
-                { cell: "K3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!BB$${dataStartRow}:BB$${dataEndRow})/B3)` },//主力资金流向
+                { cell: "K3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!L$${dataStartRow}:L$${dataEndRow})/B3)` },
                 { cell: "L3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!BC$${dataStartRow}:BC$${dataEndRow})/B3)` },
                 { cell: "M3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!BD$${dataStartRow}:BD$${dataEndRow})/B3)` },
-                { cell: "N3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!M$${dataStartRow}:M$${dataEndRow})/B3)` },//营业收入
+                { cell: "N3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!BE$${dataStartRow}:BE$${dataEndRow})/B3)` },
                 { cell: "O3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!N$${dataStartRow}:N$${dataEndRow})/B3)` },
                 { cell: "P3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!O$${dataStartRow}:O$${dataEndRow})/B3)` },
                 { cell: "Q3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!P$${dataStartRow}:P$${dataEndRow})/B3)` },
                 { cell: "R3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!Q$${dataStartRow}:Q$${dataEndRow})/B3)` },
-                { cell: "S3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!R$${dataStartRow}:R$${dataEndRow})/B3)` },//净利润
+                { cell: "S3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!R$${dataStartRow}:R$${dataEndRow})/B3)` },
                 { cell: "T3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!S$${dataStartRow}:S$${dataEndRow})/B3)` },
                 { cell: "U3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!T$${dataStartRow}:T$${dataEndRow})/B3)` },
                 { cell: "V3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!U$${dataStartRow}:U$${dataEndRow})/B3)` },
                 { cell: "W3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!V$${dataStartRow}:V$${dataEndRow})/B3)` },
-                { cell: "X3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!W$${dataStartRow}:W$${dataEndRow})/B3)` },//营收同比
+                { cell: "X3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!W$${dataStartRow}:W$${dataEndRow})/B3)` },
                 { cell: "Y3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!X$${dataStartRow}:X$${dataEndRow})/B3)` },
                 { cell: "Z3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!Y$${dataStartRow}:Y$${dataEndRow})/B3)` },
                 { cell: "AA3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!Z$${dataStartRow}:Z$${dataEndRow})/B3)` },
                 { cell: "AB3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AA$${dataStartRow}:AA$${dataEndRow})/B3)` },
                 { cell: "AC3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AB$${dataStartRow}:AB$${dataEndRow})/B3)` },
                 { cell: "AD3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AC$${dataStartRow}:AC$${dataEndRow})/B3)` },
-                { cell: "AE3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AD$${dataStartRow}:AD$${dataEndRow})/B3)` },//净利润同比
-                { cell: "AF3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AE$${dataStartRow}:AE$${dataEndRow})/B3)` },
-                { cell: "AG3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AF$${dataStartRow}:AF$${dataEndRow})/B3)` },
-                { cell: "AH3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AG$${dataStartRow}:AG$${dataEndRow})/B3)` },
-                { cell: "AI3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AH$${dataStartRow}:AH$${dataEndRow})/B3)` },
-                { cell: "AJ3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AI$${dataStartRow}:AI$${dataEndRow})/B3)` },
-                { cell: "AK3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AJ$${dataStartRow}:AJ$${dataEndRow})/B3)` }
+                { cell: "AE3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AD$${dataStartRow}:AD$${dataEndRow})/B3)` },
+                { cell: "AF3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AF$${dataStartRow}:AF$${dataEndRow})/B3)` },
+                { cell: "AG3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AG$${dataStartRow}:AG$${dataEndRow})/B3)` },
+                { cell: "AH3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AH$${dataStartRow}:AH$${dataEndRow})/B3)` },
+                { cell: "AI3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AI$${dataStartRow}:AI$${dataEndRow})/B3)` },
+                { cell: "AJ3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AJ$${dataStartRow}:AJ$${dataEndRow})/B3)` },
+                { cell: "AK3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AK$${dataStartRow}:AK$${dataEndRow})/B3)` },
+                { cell: "AL3", formula: `=IF(B3=0,0,SUMIF(${biRange},"*"&A3&"*",'${sourceSheetName}'!AL$${dataStartRow}:AL$${dataEndRow})/B3)` }
             ];
 
             // 批量设置公式
@@ -1263,14 +1265,14 @@ function createMarketIndustrialTable() {
 
             // 列范围配置
             const columnRanges = {
-                revenue: parseColumnRange("N-R"),
-                profit: parseColumnRange("S-W"),
-                growth: parseColumnRange("X-AD,AE-AK"),
+                revenue: parseColumnRange("O-S"),
+                profit: parseColumnRange("T-X"),
+                growth: parseColumnRange("Y-AE,AF-AL"),
                 marketValue: parseColumnRange("C-D"),
-                mainFund: parseColumnRange("K-M"),
+                mainFund: parseColumnRange("L-N"),
                 dailyChange: parseColumnRange("E"),
-                rangeChange: parseColumnRange("F-J"),
-                defaultFormat: parseColumnRange("E-AK")
+                rangeChange: parseColumnRange("F-K"),
+                defaultFormat: parseColumnRange("E-AL")
             };
 
             // 应用默认格式

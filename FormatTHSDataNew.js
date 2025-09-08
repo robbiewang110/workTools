@@ -1373,7 +1373,7 @@ function autoFilterStockSelection() {
 
         // 获取所需工作表
         const wsResult = wb.Worksheets.Item("选股结果");
-        const wsCriteria = wb.Worksheets.Item("过滤条件");
+        const wsCriteria = wb.Worksheets.Item("工作表首页");
 
         if (!wsResult || !wsCriteria) {
             alert("请确保存在名为'选股结果'和'过滤条件'的工作表");

@@ -956,7 +956,7 @@ function createConceptTableWithFormulas() {
 
             // 获取实际数据范围，避免全列扫描
             const lastRow = sourceSheet.UsedRange.Rows.Count;
-            const biRange = `'${sourceSheetName}'!${tmpConceptHeader}$2:${tmpConceptHeader}$${lastRow}`;
+            const biRange = `'${sourceSheetName}'!${tmpConceptHeader}$3:${tmpConceptHeader}$${lastRow}`;
             const sourceRef = `'${sourceSheetName}'!`; // 缓存工作表引用字符串
 
             console.log("开始设置公式...");
@@ -964,42 +964,42 @@ function createConceptTableWithFormulas() {
             // 批量设置公式 - 使用数组一次性赋值提升性能
             const formulas = [
                 ["B3", `=COUNTIF(${biRange},"*"&A3&"*")`],
-                ["C3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}F:F)`],
+                ["C3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}F$3:F$${lastRow})`],
                 ["D3", `=C3/B3`],
-                ["E3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}C:C)/B3`],//当日涨幅
-                ["F3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}G:G)/B3`],//区间涨幅
-                ["G3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}H:H)/B3`],
-                ["H3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}I:I)/B3`],
-                ["I3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}J:J)/B3`],
-                ["J3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}K:K)/B3`],
-                ["K3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}L:L)/B3`],
-                ["L3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BC:BC)/B3`],
-                ["M3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BD:BD)/B3`],
-                ["N3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BE:BE)/B3`],
-                ["O3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}N:N)/B3`],
-                ["P3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}O:O)/B3`],
-                ["Q3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}P:P)/B3`],
-                ["R3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}Q:Q)/B3`],
-                ["S3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}R:R)/B3`],//净利润
-                ["T3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}S:S)/B3`],
-                ["U3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}T:T)/B3`],
-                ["V3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}U:U)/B3`],
-                ["W3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}V:V)/B3`],
-                ["X3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}W:W)/B3`],//营收同比
-                ["Y3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}X:X)/B3`],
-                ["Z3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}Y:Y)/B3`],
-                ["AA3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}Z:Z)/B3`],
-                ["AB3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AA:AA)/B3`],
-                ["AC3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AB:AB)/B3`],
-                ["AD3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AC:AC)/B3`],
-                ["AE3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AD:AD)/B3`],
-                ["AF3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AF:AF)/B3`],
-                ["AG3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AG:AG)/B3`],
-                ["AH3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AH:AH)/B3`],
-                ["AI3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AI:AI)/B3`],
-                ["AJ3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AJ:AJ)/B3`],
-                ["AK3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AK:AK)/B3`],
-                ["AL3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AL:AL)/B3`]
+                ["E3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}C$3:C$${lastRow})/B3`],//当日涨幅
+                ["F3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}G$3:G$${lastRow})/B3`],//区间涨幅
+                ["G3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}H$3:H$${lastRow})/B3`],
+                ["H3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}I$3:I$${lastRow})/B3`],
+                ["I3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}J$3:J$${lastRow})/B3`],
+                ["J3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}K$3:K$${lastRow})/B3`],
+                ["K3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}L$3:L$${lastRow})/B3`],
+                ["L3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BC$3:BC$${lastRow})/B3`],
+                ["M3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BD$3:BD$${lastRow})/B3`],
+                ["N3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}BE$3:BE$${lastRow})/B3`],
+                ["O3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}N$3:N$${lastRow})/B3`],
+                ["P3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}O$3:O$${lastRow})/B3`],
+                ["Q3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}P$3:P$${lastRow})/B3`],
+                ["R3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}Q$3:Q$${lastRow})/B3`],
+                ["S3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}R$3:R$${lastRow})/B3`],//净利润
+                ["T3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}S$3:S$${lastRow})/B3`],
+                ["U3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}T$3:T$${lastRow})/B3`],
+                ["V3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}U$3:U$${lastRow})/B3`],
+                ["W3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}V$3:V$${lastRow})/B3`],
+                ["X3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}W$3:W$${lastRow})/B3`],//营收同比
+                ["Y3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}X$3:X$${lastRow})/B3`],
+                ["Z3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}Y$3:Y$${lastRow})/B3`],
+                ["AA3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}Z$3:Z$${lastRow})/B3`],
+                ["AB3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AA$3:AA$${lastRow})/B3`],
+                ["AC3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AB$3:AB$${lastRow})/B3`],
+                ["AD3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AC$3:AC$${lastRow})/B3`],
+                ["AE3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AD$3:AD$${lastRow})/B3`],
+                ["AF3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AF$3:AF$${lastRow})/B3`],
+                ["AG3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AG$3:AG$${lastRow})/B3`],
+                ["AH3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AH$3:AH$${lastRow})/B3`],
+                ["AI3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AI$3:AI$${lastRow})/B3`],
+                ["AJ3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AJ$3:AJ$${lastRow})/B3`],
+                ["AK3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AK$3:AK$${lastRow})/B3`],
+                ["AL3", `=SUMIF(${biRange},"*"&A3&"*",${sourceRef}AL$3:AL$${lastRow})/B3`]
             ];
 
             // 批量设置公式（减少与Excel交互次数）

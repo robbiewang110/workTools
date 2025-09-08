@@ -1520,7 +1520,7 @@ function autoFilterStockSelection() {
             console.log(`满足概念组合的记录数：${matchCount}条`);
         }
 
-        alert(`过滤完成！共应用了${countAppliedFilters(criteria)}个有效条件,切换到选股结果页面查看。`);
+        alert(`完成！共应用了${countAppliedFilters(criteria)}个有效条件,请到“选股结果”表查看。`);
     } catch (e) {
         alert(`执行过程中发生错误：${e.message}`);
         console.error(e);

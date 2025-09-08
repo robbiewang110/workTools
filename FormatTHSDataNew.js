@@ -1485,12 +1485,12 @@ function autoFilterStockSelection() {
         // 处理概念过滤
         const conceptConditions = [criteria.concept, criteria.concept2, criteria.concept3]
             .filter(cond => cond); // 过滤空条件
-
+        
         if (conceptConditions.length > 0) {
             const targetColIndex = colIndexes.concept;
             const dataStartRow = 3;
             const dataLastRow = wsResult.UsedRange.Rows.Count;
-            let matchCount = 0;
+            let matchCount = 0;//记录过滤的记录条数，多个条件的时候才统计的出来。
 
             console.log(`开始匹配概念条件：[${conceptConditions.join('], [')}]`);
 
@@ -1520,7 +1520,7 @@ function autoFilterStockSelection() {
             console.log(`满足概念组合的记录数：${matchCount}条`);
         }
 
-        alert(`过滤完成！共应用了${countAppliedFilters(criteria)}个有效条件`);
+        alert(`过滤完成！共应用了${countAppliedFilters(criteria)}个有效条件,切换到选股结果页面查看。`);
     } catch (e) {
         alert(`执行过程中发生错误：${e.message}`);
         console.error(e);
